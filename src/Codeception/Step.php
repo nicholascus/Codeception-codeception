@@ -162,7 +162,7 @@ abstract class Step
             }
         }
 
-        return json_encode($argument, JSON_UNESCAPED_UNICODE);
+        return json_encode($argument, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     protected function getClassName($argument)
