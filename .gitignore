@@ -38,5 +38,4 @@ tests/data/bundled_suites/tests/_output/
 .DS_Store
 robo.phar
 .env
-/nbproject/private/
 nbproject/
