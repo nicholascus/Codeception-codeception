@@ -38,3 +38,4 @@ tests/data/bundled_suites/_output/
 .DS_Store
 robo.phar
 .env
+nbproject/
