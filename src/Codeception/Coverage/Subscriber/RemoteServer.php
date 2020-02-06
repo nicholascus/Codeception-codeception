@@ -26,17 +26,20 @@ class RemoteServer extends LocalServer
         }
 
         $suite = strtr($e->getSuite()->getName(), ['\\' => '.']);
+        if ($this->options['coverage']) {
+            $this->retrieveAndPrintPhp($this->options['coverage'] . '.' . $suite);
+        }
         if ($this->options['coverage-xml']) {
-            $this->retrieveAndPrintXml($suite);
+            $this->retrieveAndPrintXml($this->options['coverage'] . '.' . $suite);
         }
         if ($this->options['coverage-html']) {
-            $this->retrieveAndPrintHtml($suite);
+            $this->retrieveAndPrintHtml($this->options['coverage'] . '.' . $suite);
         }
         if ($this->options['coverage-crap4j']) {
-            $this->retrieveAndPrintCrap4j($suite);
+            $this->retrieveAndPrintCrap4j($this->options['coverage'] . '.' . $suite);
         }
         if ($this->options['coverage-phpunit']) {
-            $this->retrieveAndPrintPHPUnit($suite);
+            $this->retrieveAndPrintPHPUnit($this->options['coverage'] . '.' . $suite);
         }
     }
 
@@ -68,6 +71,12 @@ class RemoteServer extends LocalServer
     {
         $destFile = Configuration::outputDir() . $suite . '.remote.crap4j.xml';
         file_put_contents($destFile, $this->c3Request('crap4j'));
+    }
+
+    protected function retrieveAndPrintPhp($suite)
+    {
+        $destFile = Configuration::outputDir() . $suite . '.remote.cov';
+        file_put_contents($destFile, $this->c3Request('php'));
     }
 
     protected function retrieveAndPrintPHPUnit($suite)
